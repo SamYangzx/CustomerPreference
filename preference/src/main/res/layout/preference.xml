@@ -41,6 +41,7 @@
 
         <TextView
             android:id="@+id/title"
+            style="@android:style/TextAppearance.DeviceDefault.SearchResult.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
@@ -50,6 +51,7 @@
 
         <TextView
             android:id="@+id/summary"
+            style="@android:style/TextAppearance.DeviceDefault.SearchResult.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@android:id/title"

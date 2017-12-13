@@ -60,53 +60,56 @@ public class SwitchPreference extends TwoStatePreference {
     /**
      * Construct a new SwitchPreference with the given style options.
      *
-     * @param context The Context that will style this preference
-     * @param attrs Style attributes that differ from the default
+     * @param context      The Context that will style this preference
+     * @param attrs        Style attributes that differ from the default
      * @param defStyleAttr An attribute in the current theme that contains a
-     *        reference to a style resource that supplies default values for
-     *        the view. Can be 0 to not look for defaults.
-     * @param defStyleRes A resource identifier of a style resource that
-     *        supplies default values for the view, used only if
-     *        defStyleAttr is 0 or can not be found in the theme. Can be 0
-     *        to not look for defaults.
+     *                     reference to a style resource that supplies default values for
+     *                     the view. Can be 0 to not look for defaults.
+     * @param defStyleRes  A resource identifier of a style resource that
+     *                     supplies default values for the view, used only if
+     *                     defStyleAttr is 0 or can not be found in the theme. Can be 0
+     *                     to not look for defaults.
      */
     public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                com.android.internal.R.styleable.SwitchPreference, defStyleAttr, defStyleRes);
-        setSummaryOn(a.getString(com.android.internal.R.styleable.SwitchPreference_summaryOn));
-        setSummaryOff(a.getString(com.android.internal.R.styleable.SwitchPreference_summaryOff));
-        setSwitchTextOn(a.getString(
-                com.android.internal.R.styleable.SwitchPreference_switchTextOn));
-        setSwitchTextOff(a.getString(
-                com.android.internal.R.styleable.SwitchPreference_switchTextOff));
-        setDisableDependentsState(a.getBoolean(
-                com.android.internal.R.styleable.SwitchPreference_disableDependentsState, false));
-        a.recycle();
+//        TypedArray a = context.obtainStyledAttributes(attrs,
+//                com.android.internal.R.styleable.SwitchPreference, defStyleAttr, defStyleRes);
+//        setSummaryOn(a.getString(com.android.internal.R.styleable.SwitchPreference_summaryOn));
+//        setSummaryOff(a.getString(com.android.internal.R.styleable.SwitchPreference_summaryOff));
+//        setSwitchTextOn(a.getString(
+//                com.android.internal.R.styleable.SwitchPreference_switchTextOn));
+//        setSwitchTextOff(a.getString(
+//                com.android.internal.R.styleable.SwitchPreference_switchTextOff));
+//        setDisableDependentsState(a.getBoolean(
+//                com.android.internal.R.styleable.SwitchPreference_disableDependentsState, false));
+//        a.recycle();
+        init(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
      * Construct a new SwitchPreference with the given style options.
      *
-     * @param context The Context that will style this preference
-     * @param attrs Style attributes that differ from the default
+     * @param context      The Context that will style this preference
+     * @param attrs        Style attributes that differ from the default
      * @param defStyleAttr An attribute in the current theme that contains a
-     *        reference to a style resource that supplies default values for
-     *        the view. Can be 0 to not look for defaults.
+     *                     reference to a style resource that supplies default values for
+     *                     the view. Can be 0 to not look for defaults.
      */
     public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
+        super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr, 0);
     }
 
     /**
      * Construct a new SwitchPreference with the given style options.
      *
      * @param context The Context that will style this preference
-     * @param attrs Style attributes that differ from the default
+     * @param attrs   Style attributes that differ from the default
      */
     public SwitchPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, com.android.internal.R.attr.switchPreferenceStyle);
+        super(context, attrs);
+        init(context, attrs, 0, 0);
     }
 
     /**
@@ -115,7 +118,22 @@ public class SwitchPreference extends TwoStatePreference {
      * @param context The Context that will style this preference
      */
     public SwitchPreference(Context context) {
-        this(context, null);
+        super(context);
+        init(context, null, 0, 0);
+    }
+
+    private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, new int[]{
+                android.R.attr.summaryOn, android.R.attr.summaryOff, android.R.attr.disableDependentsState
+        }, defStyleAttr, defStyleRes);
+
+        setSummaryOn(typedArray.getString(0));
+        setSummaryOff(typedArray.getString(1));
+        setDisableDependentsState(typedArray.getBoolean(2, false));
+
+        typedArray.recycle();
+
+        setWidgetLayoutResource(R.layout.preference_widget_switch);
     }
 
     @Override

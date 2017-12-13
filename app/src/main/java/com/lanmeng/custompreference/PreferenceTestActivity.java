@@ -9,6 +9,6 @@ public class PreferenceTestActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_preference);
-        addPreferencesFromResource(R.xml.preference);
+        addPreferencesFromResource(R.xml.preferences);
     }
 }

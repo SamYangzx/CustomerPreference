@@ -30,7 +30,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import android.widget.TextView;
@@ -43,7 +42,7 @@ import static android.view.View.VISIBLE;
 
 /**
  * Represents the basic Preference UI building
- * block displayed by a {@link PreferenceActivity} in the form of a
+ * block displayed by a in the form of a
  * {@link ListView}. This class provides the {@link View} to be displayed in
  * the activity and associates with a {@link SharedPreferences} to
  * store/retrieve the preference data.

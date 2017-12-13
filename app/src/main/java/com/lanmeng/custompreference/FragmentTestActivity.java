@@ -12,5 +12,6 @@ public class FragmentTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_test);
         getFragmentManager().beginTransaction().replace(R.id.main_content, new CustomFragment()).commit();
+
     }
 }

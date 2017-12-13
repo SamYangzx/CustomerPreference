@@ -82,7 +82,6 @@ public class Preference extends android.preference.Preference {
     TextView titleView;
     TextView summaryView;
 
-    ImageView imageView;
     View imageFrame;
 
     private int iconResId;
@@ -152,9 +151,6 @@ public class Preference extends android.preference.Preference {
         if (icon == null && iconResId > 0) {
             icon = getContext().getResources().getDrawable(iconResId);
         }
-        imageView = (ImageView) view.findViewById(R.id.icon);
-        imageView.setImageDrawable(icon);
-        imageView.setVisibility(icon != null ? VISIBLE : GONE);
 
         imageFrame = view.findViewById(R.id.icon_frame);
         imageFrame.setVisibility(icon != null ? VISIBLE : GONE);

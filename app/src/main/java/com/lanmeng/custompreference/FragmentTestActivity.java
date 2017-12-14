@@ -3,6 +3,7 @@ package com.lanmeng.custompreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.lanmeng.custompreference.fragment.CustomFragment;
 import com.lanmeng.custompreference.fragment.CustomFragment_v14;
 
 public class FragmentTestActivity extends AppCompatActivity {

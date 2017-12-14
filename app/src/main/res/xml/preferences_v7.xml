@@ -26,7 +26,7 @@
             android:title="string/pref_title_mms_delete" />
     </PreferenceCategory>
 
-    <com.lanmeng.preference.v7.SwitchPreference
+    <SwitchPreference
         android:key="pref_key_mms_delete_limit"
         android:summary="string/pref_summary_delete_limit"
         android:title="string/pref_title_mms_delete" />

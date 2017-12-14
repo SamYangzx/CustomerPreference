@@ -5,5 +5,5 @@ package com.lanmeng.custompreference;
  */
 
 public class Constant {
-    public static final boolean V7_PREFERENCE = true;
+    public static final boolean V7_PREFERENCE = false;//XXPreference in xml
 }

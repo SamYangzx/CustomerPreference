@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PreferenceTestActivity" />
-        <activity android:name=".FragmentTestActivity"></activity>
+        <activity android:name=".FragmentTestActivity" ></activity>
     </application>
 
 </manifest>

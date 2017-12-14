@@ -4,6 +4,4 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="onclick_layout_color">#EBEBEB</color>
-    <color name="subhead_categary_bg">#ffffff</color>
 </resources>

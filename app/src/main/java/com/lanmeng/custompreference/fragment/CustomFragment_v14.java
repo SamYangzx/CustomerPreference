@@ -1,7 +1,7 @@
 package com.lanmeng.custompreference.fragment;
 
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.support.v14.preference.PreferenceFragment;
 
 import com.lanmeng.custompreference.R;
 
@@ -10,7 +10,7 @@ import com.lanmeng.custompreference.R;
  * Created by fenghe on 2017/12/13.
  */
 
-public class CustomFragment extends PreferenceFragment {
+public class CustomFragment_v14 extends PreferenceFragment {
 
     /**
      * Called during {@link #onCreate(Bundle)} to supply the preferences for this fragment.
@@ -31,7 +31,7 @@ public class CustomFragment extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 添加 Preferences XML
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.preferences_v7);
 
 //        CustomFragment_v14.this.set
     }

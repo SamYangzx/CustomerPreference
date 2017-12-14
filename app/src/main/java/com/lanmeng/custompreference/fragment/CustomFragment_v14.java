@@ -19,7 +19,7 @@ public class CustomFragment_v14 extends PreferenceFragment {
      *
      * @param savedInstanceState If the fragment is being re-created from
      *                           a previous saved state, this is the state.
-     * @param rootKey            If non-null, this preference fragment should be rooted at the
+     * @param rootKey            If non-null, this custom_preference fragment should be rooted at the
      *                           {@link PreferenceScreen} with this key.
      */
     @Override

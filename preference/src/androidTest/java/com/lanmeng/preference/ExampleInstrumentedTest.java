@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.lanmeng.preference.test", appContext.getPackageName());
+        assertEquals("com.lanmeng.custom_preference.test", appContext.getPackageName());
     }
 }

@@ -32,7 +32,7 @@ import android.widget.TextView;
  * boolean value in SharedPreferences, and may have dependent preferences that are
  * enabled/disabled based on the current state.
  */
-public abstract class TwoStatePreference extends Preference {
+public abstract class TwoStatePreference extends CustomPreference {
 
     private CharSequence mSummaryOn;
     private CharSequence mSummaryOff;

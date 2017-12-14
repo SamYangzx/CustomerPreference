@@ -26,7 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 /**
- * A {@link Preference} that provides a two-state toggleable option.
+ * A {@link CustomPreference} that provides a two-state toggleable option.
  * <p>
  * This preference will store a boolean into the SharedPreferences.
  *

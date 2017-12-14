@@ -34,7 +34,7 @@ import android.widget.ListView;
 
 import android.widget.TextView;
 
-;import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.os.Build.VERSION_CODES.LOLLIPOP;
 import static android.text.TextUtils.isEmpty;
 import static android.view.View.GONE;
@@ -45,10 +45,10 @@ import static android.view.View.VISIBLE;
  * block displayed by a in the form of a
  * {@link ListView}. This class provides the {@link View} to be displayed in
  * the activity and associates with a {@link SharedPreferences} to
- * store/retrieve the preference data.
+ * store/retrieve the custom_preference data.
  * <p>
- * When specifying a preference hierarchy in XML, each element can point to a
- * subclass of {@link Preference}, similar to the view hierarchy and layouts.
+ * When specifying a custom_preference hierarchy in XML, each element can point to a
+ * subclass of {@link CustomPreference}, similar to the view hierarchy and layouts.
  * <p>
  * This class contains a {@code key} that will be used as the key into the
  * {@link SharedPreferences}. It is up to the subclass to decide how to store
@@ -76,7 +76,7 @@ import static android.view.View.VISIBLE;
  * @attr ref android.R.styleable#Preference_defaultValue
  * @attr ref android.R.styleable#Preference_shouldDisableView
  */
-public class Preference extends android.preference.Preference {
+public class CustomPreference extends android.preference.Preference {
 
     TextView titleView;
     TextView summaryView;
@@ -86,23 +86,23 @@ public class Preference extends android.preference.Preference {
     private int iconResId;
     private Drawable icon;
 
-    public Preference(Context context) {
+    public CustomPreference(Context context) {
         super(context);
         init(context, null, 0, 0);
     }
 
-    public Preference(Context context, AttributeSet attrs) {
+    public CustomPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0, 0);
     }
 
-    public Preference(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(LOLLIPOP)
-    public Preference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -119,7 +119,7 @@ public class Preference extends android.preference.Preference {
     protected View onCreateView(ViewGroup parent) {
         LayoutInflater layoutInflater =
                 (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout = layoutInflater.inflate(R.layout.preference, parent, false);
+        View layout = layoutInflater.inflate(R.layout.custom_preference, parent, false);
 
         ViewGroup widgetFrame = (ViewGroup) layout.findViewById(R.id.widget_frame);
         int widgetLayoutResId = getWidgetLayoutResource();

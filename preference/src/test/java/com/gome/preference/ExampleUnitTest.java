@@ -1,4 +1,4 @@
-package com.lanmeng.custompreference;
+package com.gome.preference;
 
 import org.junit.Test;
 

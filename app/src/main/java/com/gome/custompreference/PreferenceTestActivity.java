@@ -1,4 +1,4 @@
-package com.lanmeng.custompreference;
+package com.gome.custompreference;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

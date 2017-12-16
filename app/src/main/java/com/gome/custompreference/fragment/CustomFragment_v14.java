@@ -1,9 +1,9 @@
-package com.lanmeng.custompreference.fragment;
+package com.gome.custompreference.fragment;
 
 import android.os.Bundle;
 import android.support.v14.preference.PreferenceFragment;
 
-import com.lanmeng.custompreference.R;
+import com.gome.custompreference.R;
 
 
 /**

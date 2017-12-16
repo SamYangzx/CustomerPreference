@@ -1,10 +1,10 @@
-package com.lanmeng.custompreference;
+package com.gome.custompreference;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.lanmeng.custompreference.fragment.CustomFragment;
-import com.lanmeng.custompreference.fragment.CustomFragment_v14;
+import com.gome.custompreference.fragment.CustomFragment;
+import com.gome.custompreference.fragment.CustomFragment_v14;
 
 public class FragmentTestActivity extends AppCompatActivity {
 

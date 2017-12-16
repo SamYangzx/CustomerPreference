@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package com.lanmeng.preference;
+package com.gome.preference.support;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -31,8 +31,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import android.widget.TextView;
+import android.support.v7.preference.Preference;
+
+import com.gome.preference.R;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.os.Build.VERSION_CODES.LOLLIPOP;
@@ -76,7 +78,7 @@ import static android.view.View.VISIBLE;
  * @attr ref android.R.styleable#Preference_defaultValue
  * @attr ref android.R.styleable#Preference_shouldDisableView
  */
-public class CustomPreference extends android.preference.Preference {
+public class CustomPreference extends android.support.v7.preference.Preference {
 
     TextView titleView;
     TextView summaryView;

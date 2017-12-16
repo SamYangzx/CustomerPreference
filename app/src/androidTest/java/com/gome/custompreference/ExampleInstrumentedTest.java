@@ -1,4 +1,4 @@
-package com.lanmeng.custompreference;
+package com.gome.custompreference;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

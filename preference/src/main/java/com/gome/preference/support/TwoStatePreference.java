@@ -17,17 +17,14 @@
 package com.gome.preference.support;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.StringRes;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
-
-import com.gome.preference.R;
 
 /**
  * Common base class for preferences that have two selectable states, persist a
@@ -35,10 +32,9 @@ import com.gome.preference.R;
  * enabled/disabled based on the current state.
  */
 public abstract class TwoStatePreference extends CustomPreference {
-
     private CharSequence mSummaryOn;
     private CharSequence mSummaryOff;
-    boolean mChecked;
+    protected boolean mChecked;
     private boolean mCheckedSet;
     private boolean mDisableDependentsState;
 
@@ -70,7 +66,7 @@ public abstract class TwoStatePreference extends CustomPreference {
     }
 
     /**
-     * Sets the checked state and saves it to the {@link SharedPreferences}.
+     * Sets the checked state and saves it to the {@link android.content.SharedPreferences}.
      *
      * @param checked The checked state.
      */
@@ -119,7 +115,7 @@ public abstract class TwoStatePreference extends CustomPreference {
      * @param summaryResId The summary as a resource.
      * @see #setSummaryOn(CharSequence)
      */
-    public void setSummaryOn(@StringRes int summaryResId) {
+    public void setSummaryOn(int summaryResId) {
         setSummaryOn(getContext().getString(summaryResId));
     }
 
@@ -148,7 +144,7 @@ public abstract class TwoStatePreference extends CustomPreference {
      * @param summaryResId The summary as a resource.
      * @see #setSummaryOff(CharSequence)
      */
-    public void setSummaryOff(@StringRes int summaryResId) {
+    public void setSummaryOff(int summaryResId) {
         setSummaryOff(getContext().getString(summaryResId));
     }
 
@@ -194,39 +190,46 @@ public abstract class TwoStatePreference extends CustomPreference {
     }
 
     /**
-     * Sync a summary view contained within view's subhierarchy with the correct summary text.
+     * Sync a summary holder contained within holder's subhierarchy with the correct summary text.
      *
-     * @param view View where a summary should be located
+     * @param holder PreferenceViewHolder which holds a reference to the summary view
      */
-    void syncSummaryView(View view) {
-        // Sync the summary view
-        TextView summaryView = (TextView) view.findViewById(R.id.summary);
-        if (summaryView != null) {
-            boolean useDefaultSummary = true;
-            if (mChecked && !TextUtils.isEmpty(mSummaryOn)) {
-                summaryView.setText(mSummaryOn);
-                useDefaultSummary = false;
-            } else if (!mChecked && !TextUtils.isEmpty(mSummaryOff)) {
-                summaryView.setText(mSummaryOff);
-                useDefaultSummary = false;
-            }
+    protected void syncSummaryView(PreferenceViewHolder holder) {
+        // Sync the summary holder
+        View view = holder.findViewById(android.R.id.summary);
+        syncSummaryView(view);
+    }
 
-            if (useDefaultSummary) {
-                final CharSequence summary = getSummary();
-                if (!TextUtils.isEmpty(summary)) {
-                    summaryView.setText(summary);
-                    useDefaultSummary = false;
-                }
+    /**
+     * @hide
+     */
+    protected void syncSummaryView(View view) {
+        if (!(view instanceof TextView)) {
+            return;
+        }
+        TextView summaryView = (TextView) view;
+        boolean useDefaultSummary = true;
+        if (mChecked && !TextUtils.isEmpty(mSummaryOn)) {
+            summaryView.setText(mSummaryOn);
+            useDefaultSummary = false;
+        } else if (!mChecked && !TextUtils.isEmpty(mSummaryOff)) {
+            summaryView.setText(mSummaryOff);
+            useDefaultSummary = false;
+        }
+        if (useDefaultSummary) {
+            final CharSequence summary = getSummary();
+            if (!TextUtils.isEmpty(summary)) {
+                summaryView.setText(summary);
+                useDefaultSummary = false;
             }
-
-            int newVisibility = View.GONE;
-            if (!useDefaultSummary) {
-                // Someone has written to it
-                newVisibility = View.VISIBLE;
-            }
-            if (newVisibility != summaryView.getVisibility()) {
-                summaryView.setVisibility(newVisibility);
-            }
+        }
+        int newVisibility = View.GONE;
+        if (!useDefaultSummary) {
+            // Someone has written to it
+            newVisibility = View.VISIBLE;
+        }
+        if (newVisibility != summaryView.getVisibility()) {
+            summaryView.setVisibility(newVisibility);
         }
     }
 
@@ -274,12 +277,14 @@ public abstract class TwoStatePreference extends CustomPreference {
             super(superState);
         }
 
-        public static final Creator<SavedState> CREATOR =
-                new Creator<SavedState>() {
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    @Override
                     public SavedState createFromParcel(Parcel in) {
                         return new SavedState(in);
                     }
 
+                    @Override
                     public SavedState[] newArray(int size) {
                         return new SavedState[size];
                     }

@@ -117,9 +117,10 @@ public class CustomPreference extends android.preference.Preference {
 
     @Override
     protected View onCreateView(ViewGroup parent) {
+//        super.onCreateView(parent);
         LayoutInflater layoutInflater =
                 (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout = layoutInflater.inflate(R.layout.custom_preference, parent, false);
+        View layout = layoutInflater.inflate(R.layout.origin_preference, parent, false);
 
         ViewGroup widgetFrame = (ViewGroup) layout.findViewById(R.id.widget_frame);
         int widgetLayoutResId = getWidgetLayoutResource();

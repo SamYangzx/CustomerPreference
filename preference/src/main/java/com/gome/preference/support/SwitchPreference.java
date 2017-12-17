@@ -19,7 +19,10 @@ package com.gome.preference.support;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.StringRes;
+import android.support.v7.preference.PreferenceViewHolder;
+import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.CompoundButton;
@@ -39,6 +42,7 @@ import com.gome.preference.R;
  * @attr ref android.R.styleable#SwitchPreference_disableDependentsState
  */
 public class SwitchPreference extends TwoStatePreference {
+    private static final String TAG = SwitchPreference.class.getSimpleName();
     private final Listener mListener = new Listener();
 
     // Switch text for on and off states
@@ -134,35 +138,82 @@ public class SwitchPreference extends TwoStatePreference {
         setDisableDependentsState(typedArray.getBoolean(2, false));
 
         typedArray.recycle();
-
+        Log.d(TAG, "setWidgetLayoutResource" );
         setWidgetLayoutResource(R.layout.preference_widget_switch);
     }
 
-    @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
 
-//        View checkableView = view.findViewById(com.android.internal.R.id.switch_widget);
-        View checkableView = view.findViewById(R.id.switch_widget);
-        if (checkableView != null && checkableView instanceof Checkable) {
-            //TODO 这里到时要使用GomeSwitch
-            if (checkableView instanceof Switch) {
-                final Switch switchView = (Switch) checkableView;
+    @Override
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
+        this.syncSummaryView(holder);
+        this.syncSwitchView(holder);
+    }
+
+    private void syncSwitchView(PreferenceViewHolder holder) {
+        View switchView = holder.findViewById(R.id.switch_widget);
+
+        this.syncSwitchView(switchView);
+    }
+
+    private void syncSwitchView(View view) {
+        Log.d(TAG, "view: " + view);
+        Log.d(TAG, "mChecked: " + mChecked);
+        if (view instanceof Checkable) {
+            final Checkable checkable = (Checkable) view;
+            final boolean isChecked = checkable.isChecked();
+            if (isChecked == mChecked) return;
+
+            if (view instanceof SwitchCompat) {
+                SwitchCompat switchView = (SwitchCompat) view;
+                switchView.setTextOn(this.mSwitchOn);
+                switchView.setTextOff(this.mSwitchOff);
+                switchView.setOnCheckedChangeListener(null);
+            } else if (view instanceof Switch) {
+                Switch switchView = (Switch) view;
+                switchView.setTextOn(this.mSwitchOn);
+                switchView.setTextOff(this.mSwitchOff);
                 switchView.setOnCheckedChangeListener(null);
             }
 
-            ((Checkable) checkableView).setChecked(mChecked);
+            checkable.toggle();
 
-            if (checkableView instanceof Switch) {
-                final Switch switchView = (Switch) checkableView;
-                switchView.setTextOn(mSwitchOn);
-                switchView.setTextOff(mSwitchOff);
+            if (view instanceof SwitchCompat) {
+                SwitchCompat switchView = (SwitchCompat) view;
+                switchView.setOnCheckedChangeListener(mListener);
+            } else if (view instanceof Switch) {
+                Switch switchView = (Switch) view;
                 switchView.setOnCheckedChangeListener(mListener);
             }
         }
-
-        syncSummaryView(view);
     }
+
+
+//    @Override
+//    protected void onBindView(View view) {
+//        super.onBindView(view);
+//
+////        View checkableView = view.findViewById(com.android.internal.R.id.switch_widget);
+//        View checkableView = view.findViewById(R.id.switch_widget);
+//        if (checkableView != null && checkableView instanceof Checkable) {
+//            //TODO 这里到时要使用GomeSwitch
+//            if (checkableView instanceof Switch) {
+//                final Switch switchView = (Switch) checkableView;
+//                switchView.setOnCheckedChangeListener(null);
+//            }
+//
+//            ((Checkable) checkableView).setChecked(mChecked);
+//
+//            if (checkableView instanceof Switch) {
+//                final Switch switchView = (Switch) checkableView;
+//                switchView.setTextOn(mSwitchOn);
+//                switchView.setTextOff(mSwitchOff);
+//                switchView.setOnCheckedChangeListener(mListener);
+//            }
+//        }
+//
+//        syncSummaryView(view);
+//    }
 
     /**
      * Set the text displayed on the switch widget in the on state.

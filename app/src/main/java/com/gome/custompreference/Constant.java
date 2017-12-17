@@ -5,5 +5,5 @@ package com.gome.custompreference;
  */
 
 public class Constant {
-    public static final boolean V7_PREFERENCE = false;//XXPreference in xml
+    public static final boolean V7_PREFERENCE = true;//XXPreference in xml
 }

@@ -24,23 +24,17 @@ package com.gome.preference.support;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.support.v7.preference.Preference;
 
 import com.gome.preference.R;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.os.Build.VERSION_CODES.LOLLIPOP;
-import static android.text.TextUtils.isEmpty;
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 /**
  * Represents the basic Preference UI building
@@ -110,52 +104,33 @@ public class CustomPreference extends android.support.v7.preference.Preference {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray typedArray =
-                context.obtainStyledAttributes(attrs, new int[]{android.R.attr.icon}, defStyleAttr,
-                        defStyleRes);
-        iconResId = typedArray.getResourceId(0, 0);
-        typedArray.recycle();
+//        TypedArray typedArray =
+//                context.obtainStyledAttributes(attrs, new int[]{android.R.attr.icon}, defStyleAttr,
+//                        defStyleRes);
+//        iconResId = typedArray.getResourceId(0, 0);
+//        typedArray.recycle();
+//        setLayoutResource(R.layout.custom_preference);
+        setLayoutResource(R.layout.origin_preference);
     }
 
+
+    /**
+     * Binds the created View to the data for this Preference.
+     * <p>
+     * This is a good place to grab references to custom Views in the layout and
+     * set properties on them.
+     * <p>
+     * Make sure to call through to the superclass's implementation.
+     *
+     * @param holder The ViewHolder that provides references to the views to fill in. These views
+     *               will be recycled, so you should not hold a reference to them after this method
+     *               returns.
+     */
     @Override
-    protected View onCreateView(ViewGroup parent) {
-        LayoutInflater layoutInflater =
-                (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout = layoutInflater.inflate(R.layout.custom_preference, parent, false);
-
-        ViewGroup widgetFrame = (ViewGroup) layout.findViewById(R.id.widget_frame);
-        int widgetLayoutResId = getWidgetLayoutResource();
-        if (widgetLayoutResId != 0) {
-            layoutInflater.inflate(widgetLayoutResId, widgetFrame);
-        }
-        widgetFrame.setVisibility(widgetLayoutResId != 0 ? VISIBLE : GONE);
-
-        return layout;
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
     }
 
-    @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
-
-        CharSequence title = getTitle();
-        titleView = (TextView) view.findViewById(R.id.title);
-        titleView.setText(title);
-        titleView.setVisibility(!isEmpty(title) ? VISIBLE : GONE);
-//        titleView.setTypeface(getRobotoRegular(getContext()));
-
-        CharSequence summary = getSummary();
-        summaryView = (TextView) view.findViewById(R.id.summary);
-        summaryView.setText(summary);
-        summaryView.setVisibility(!isEmpty(summary) ? VISIBLE : GONE);
-//        summaryView.setTypeface(getRobotoRegular(getContext()));
-
-        if (icon == null && iconResId > 0) {
-            icon = getContext().getResources().getDrawable(iconResId);
-        }
-
-        imageFrame = view.findViewById(R.id.icon_frame);
-        imageFrame.setVisibility(icon != null ? VISIBLE : GONE);
-    }
 
     @Override
     public void setIcon(int iconResId) {
@@ -168,4 +143,16 @@ public class CustomPreference extends android.support.v7.preference.Preference {
         super.setIcon(icon);
         this.icon = icon;
     }
+
+    private void setEnabledStateOnViews(View v, boolean enabled) {
+        v.setEnabled(enabled);
+
+        if (v instanceof ViewGroup) {
+            final ViewGroup vg = (ViewGroup) v;
+            for (int i = vg.getChildCount() - 1; i >= 0; i--) {
+                setEnabledStateOnViews(vg.getChildAt(i), enabled);
+            }
+        }
+    }
+
 }

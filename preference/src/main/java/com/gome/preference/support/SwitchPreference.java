@@ -168,11 +168,13 @@ public class SwitchPreference extends TwoStatePreference {
                 SwitchCompat switchView = (SwitchCompat) view;
                 switchView.setTextOn(this.mSwitchOn);
                 switchView.setTextOff(this.mSwitchOff);
+                switchView.setChecked(isChecked);
                 switchView.setOnCheckedChangeListener(null);
             } else if (view instanceof Switch) {
                 Switch switchView = (Switch) view;
                 switchView.setTextOn(this.mSwitchOn);
                 switchView.setTextOff(this.mSwitchOff);
+                switchView.setChecked(isChecked);
                 switchView.setOnCheckedChangeListener(null);
             }
 

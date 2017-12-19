@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="#00000000">
+    android:divider="@null">
 
     <PreferenceCategory
         android:key="pref_key_storage_settings"
@@ -17,7 +17,8 @@
             android:dependency="pref_key_auto_delete"
             android:key="pref_key_sms_delete_limit"
             android:summary="string/pref_summary_delete_limit"
-            android:title="string/pref_title_sms_delete" />
+            android:title="string/pref_title_sms_delete"
+            />
 
         <Preference
             android:dependency="pref_key_auto_delete"
@@ -29,5 +30,15 @@
     <com.gome.preference.support.SwitchPreference
         android:key="pref_key_mms_delete_limit"
         android:summary="string/pref_summary_delete_limit"
+        android:title="string/pref_title_mms_delete"
+        android:summaryOff="off"
+        android:summaryOn="on"/>
+
+    <android.support.v14.preference.SwitchPreference
+        android:summary="string/pref_summary_delete_limit"
+        android:summaryOff="off"
+        android:summaryOn="on"
+        android:textOff="OFF"
+        android:textOn="ON"
         android:title="string/pref_title_mms_delete" />
 </PreferenceScreen>

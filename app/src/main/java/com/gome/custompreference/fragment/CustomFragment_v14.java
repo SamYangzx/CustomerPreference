@@ -2,6 +2,9 @@ package com.gome.custompreference.fragment;
 
 import android.os.Bundle;
 import android.support.v14.preference.PreferenceFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.gome.custompreference.R;
 
@@ -33,8 +36,18 @@ public class CustomFragment_v14 extends PreferenceFragment {
         // 添加 Preferences XML
         addPreferencesFromResource(R.xml.preferences_v7);
 
-//        CustomFragment_v14.this.set
+//        CustomFragment_v14.this.setDividerHeight(0);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
 
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setDivider(null);
+    }
 }

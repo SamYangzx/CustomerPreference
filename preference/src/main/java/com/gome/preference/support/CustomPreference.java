@@ -111,6 +111,7 @@ public class CustomPreference extends android.support.v7.preference.Preference {
 //        typedArray.recycle();
 //        setLayoutResource(R.layout.custom_preference);
         setLayoutResource(R.layout.origin_preference);
+        setSelectable(false);
     }
 
 

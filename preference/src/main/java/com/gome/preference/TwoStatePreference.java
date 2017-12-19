@@ -198,7 +198,7 @@ public abstract class TwoStatePreference extends CustomPreference {
      */
     void syncSummaryView(View view) {
         // Sync the summary view
-        TextView summaryView = (TextView) view.findViewById(R.id.summary);
+        TextView summaryView = (TextView) view.findViewById(android.R.id.summary);
         if (summaryView != null) {
             boolean useDefaultSummary = true;
             if (mChecked && !TextUtils.isEmpty(mSummaryOn)) {

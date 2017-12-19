@@ -141,7 +141,7 @@ public class SwitchPreference extends TwoStatePreference {
         super.onBindView(view);
 
 //        View checkableView = view.findViewById(com.android.internal.R.id.switch_widget);
-        View checkableView = view.findViewById(R.id.switch_widget);
+        View checkableView = view.findViewById(R.id.custom_switch_widget);
         if (checkableView != null && checkableView instanceof Checkable) {
             //TODO 这里到时要使用GomeSwitch
             if (checkableView instanceof Switch) {

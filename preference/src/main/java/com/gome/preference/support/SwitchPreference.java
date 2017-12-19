@@ -138,7 +138,7 @@ public class SwitchPreference extends TwoStatePreference {
         setDisableDependentsState(typedArray.getBoolean(2, false));
 
         typedArray.recycle();
-        Log.d(TAG, "setWidgetLayoutResource" );
+        Log.d(TAG, "setWidgetLayoutResource");
         setWidgetLayoutResource(R.layout.preference_widget_switch);
     }
 
@@ -151,8 +151,8 @@ public class SwitchPreference extends TwoStatePreference {
     }
 
     private void syncSwitchView(PreferenceViewHolder holder) {
-        View switchView = holder.findViewById(R.id.switch_widget);
-
+//        View switchView = holder.findViewById(R.id.switch_widget);
+        View switchView = holder.findViewById(R.id.custom_switch_widget);
         this.syncSwitchView(switchView);
     }
 
